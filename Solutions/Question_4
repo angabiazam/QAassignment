@@ -1,0 +1,98 @@
+#API Automation using POSTMAN
+ 
+#Request(GET) : https://apiproxy.paytm.com/v2/movies/upcoming
+
+var responseInJson = pm.response.json();
+var arrayLength= responseInJson.upcomingMovieData.length;
+
+# Test 1
+pm.test("Movie poster URL should have .jpg format", function () 
+{
+    for(i=0;i<arrayLength;i++)
+    {
+        value=responseInJson.upcomingMovieData[i].moviePosterUrl;
+        pm.expect(value).to.include(".jpg");
+    }
+
+});
+
+
+# Test 2
+pm.test("Status code is 200", function () 
+{
+    pm.response.to.have.status(200);
+});
+
+
+# Test 3
+pm.test("Movie release date should not be before today's date", function () 
+{
+    for(i=0;i<arrayLength;i++)
+    {
+        value = responseInJson.upcomingMovieData[i].releaseDate;
+        var today = new Date();
+        var dd = today.getDate();
+        var MMM = today.getMonth();
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' +'0'+ MMM+ '-' + '0' + dd ;
+        if(value > today)
+        {
+            console.log("pass");
+        }
+        else
+        {
+            console.log("fail");
+        }
+    }
+});
+
+
+# Test 4
+pm.test("Movie code is unique", function () 
+{
+    var outputArray= [];
+ 
+    for(i=0;i<arrayLength;i++)
+    {
+        outputArray.push(responseInJson.upcomingMovieData[i].paytmMovieCode);
+    }
+    var length1 = outputArray.length;
+    let uniqueMovieCode = Array.from(new Set(outputArray));
+    var length2 = uniqueMovieCode.length;
+    if(length1 == length2)
+    {
+        console.log("All paytm movie codes are unique");
+    }
+    else
+    {
+        console.log("All paytm movie codes are not unique");
+    }
+});
+
+
+# Test 5
+pm.test("All movie should have only one language", function () 
+{
+    for(i=0;i<arrayLength;i++)
+    {
+        value=responseInJson.upcomingMovieData[i].language;
+        console.log(value);
+    }
+
+});
+
+
+#Test 6
+pm.test("Name of movie whose content available is 0", function () 
+{
+    for(i=0;i<arrayLength;i++)
+    {
+        value=responseInJson.upcomingMovieData[i].isContentAvailable;
+        if(value == 0)
+        {
+            var movieName = responseInJson.upcomingMovieData[i].movie_name;
+            console.log(movieName);
+        }
+    }
+
+});
