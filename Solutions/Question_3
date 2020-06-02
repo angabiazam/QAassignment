@@ -1,0 +1,49 @@
+3) A)
+
+public class PrimeNumber
+{
+    public static void main(String []args)
+    {
+        int N = 100;
+        int i, j, flag,count=0;  
+        System.out.println("First " + N + " prime numbers");  
+        for (i = 1; i <= 1000; i++)  
+        {  
+            if (i == 1 || i == 0)
+            {
+                continue; 
+            }
+            flag = 1; 
+            for (j = 2; j <= i / 2; j++)  
+            {  
+                if (i % j == 0) 
+                {  
+                    flag = 0;  
+                    break;  
+                }  
+            }  
+            if (flag == 1)
+            {
+                System.out.println(i);
+                count+=1;
+            }
+            if(count>N-1)
+            {
+                break;
+            }
+        }
+    }
+
+}
+
+
+3. B) TEST CASES: 
+
+Pre-requisites : Let the number to be N 
+a) Divide the number by 1 . if remainder =0 , it is not prime.
+
+b) Divide the number by 2 . If remainder =0 , it is not prime.
+
+c)Divide the number by upto n -1 , if remainder !=0 , it is prime.
+
+d)If the number is perfectly divisible by any number upto n-1, it is not prime.
