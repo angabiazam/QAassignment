@@ -1,0 +1,20 @@
+2) 
+Assumptions :
+New User - Has created his account within  a week
+Old user - More than one week old account 
+
+a) New User should get maximum of Rs 300 discount if he shops for Rs 1000 and above & apply the promo code 'NEW30' for the first time.
+
+b) new user should not get any discount if he shops for less than Rs 1000 and applies a valid promo code 'NEW30'.
+
+c) new user should not get any discount if he shops for Rs 1000 and more applies a invalid promo code .
+
+d) new user should not get any discount if he shops for Rs 1000 and more and applies a valid promo code 'NEW30' for the second time.
+
+e) User should get error message if he/ she enters a promo code of length more than 7 . 
+
+f) Old User should not get any discount if he shops for Rs 1000 and above & apply the promo code 'NEW30' even for the first time.
+
+g) New user should not get any discount if the format of the promo is not correct , i.e, promo should be in Capital letters and there should not be any space between or prior them.
+
+
