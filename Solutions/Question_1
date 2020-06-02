@@ -1,0 +1,4 @@
+1. a)  select * from (SELECT EmpName, Salary from Employee e join Salary s on e.EmpId = s.EmpId order by Salary desc limit n )order by Salary limit 1;
+
+1. b) Update Salary set Salary = '5000' where salary in (SELECT s.salary FROM Employee e join Salary s on e.EmpId = s.EmpId where DATEDIFF(yy,SYSDATE(),e.Date_of_birth) > 30);
+
